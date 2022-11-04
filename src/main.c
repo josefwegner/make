@@ -30,6 +30,9 @@ this program.  If not, see <https://www.gnu.org/licenses/>.  */
 #ifdef _AMIGA
 # include <dos/dos.h>
 # include <proto/dos.h>
+#ifdef __AMIGAOS4
+# include <dos/obsolete.h>
+#endif /*__AMIGAOS4 */
 #endif
 #ifdef WINDOWS32
 # include <windows.h>
@@ -51,6 +54,9 @@ this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifdef _AMIGA
 int __stack = 20000; /* Make sure we have 20K of stack space */
+#ifndef __SASC
+#define __aligned
+#endif /*__SASC*/
 #endif
 #ifdef VMS
 int vms_use_mcr_command = 0;
