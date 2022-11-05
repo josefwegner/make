@@ -2691,11 +2691,7 @@ exec_command (char **argv)
 
 void clean_tmp (void)
 {
-#ifdef __AMIGAOS4__
-  Delete (amiga_bname);
-#else
   DeleteFile (amiga_bname);
-#endif
 }
 
 #endif /* On Amiga */
