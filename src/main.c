@@ -54,9 +54,6 @@ this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifdef _AMIGA
 int __stack = 20000; /* Make sure we have 20K of stack space */
-#ifndef __SASC
-#define __aligned
-#endif /*__SASC*/
 #endif
 #ifdef VMS
 int vms_use_mcr_command = 0;
@@ -1561,7 +1558,11 @@ main (int argc, char **argv, char **envp)
     BPTR env, file, old;
     char buffer[1024];
     int len;
+#ifdef __SASC
     __aligned struct FileInfoBlock fib;
+#else /* GCC */
+    struct FileInfoBlock fib __attribute__ ((aligned(4)));
+#endif
 
     env = Lock ("ENV:", ACCESS_READ);
     if (env)
