@@ -39,6 +39,7 @@ this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #define STREAM_OK(_s) ((fcntl (fileno (_s), F_GETFD) != -1) || (errno != EBADF))
 
+#if !defined(VMS) && !defined(_AMIGA) && !defined(__MSDOS__)
 unsigned int
 check_io_state ()
 {
@@ -68,6 +69,7 @@ check_io_state ()
 
   return state;
 }
+#endif
 
 #if defined(MAKE_JOBSERVER)
 
@@ -751,6 +753,7 @@ osync_release ()
 
 #endif
 
+#if !defined(VMS) && !defined(_AMIGA) && !defined(__MSDOS__)
 /* Create a "bad" file descriptor for stdin when parallel jobs are run.  */
 int
 get_bad_stdin ()
@@ -780,6 +783,7 @@ get_bad_stdin ()
 
   return bad_stdin;
 }
+#endif
 
 /* Set file descriptors to be inherited / not inherited by subprocesses.  */
 
@@ -793,6 +797,7 @@ void fd_noinherit (int fd) {}
 #  define FD_CLOEXEC 1
 # endif
 
+#if !defined(VMS) && !defined(_AMIGA) && !defined(__MSDOS__)
 void
 fd_inherit (int fd)
 {
@@ -819,10 +824,12 @@ fd_noinherit (int fd)
       }
 }
 #endif
+#endif
 
 /* Set a file descriptor referring to a regular file to be in O_APPEND mode.
    If it fails, just ignore it.  */
 
+#if !defined(VMS) && !defined(_AMIGA) && !defined(__MSDOS__)
 void
 fd_set_append (int fd)
 {
@@ -840,7 +847,9 @@ fd_set_append (int fd)
     }
 #endif
 }
+#endif
 
+#if !defined(VMS) && !defined(_AMIGA) && !defined(__MSDOS__)
 /* Return a file descriptor for a new anonymous temp file, or -1.  */
 int
 os_anontmp ()
@@ -887,3 +896,4 @@ os_anontmp ()
 
   return fd;
 }
+#endif

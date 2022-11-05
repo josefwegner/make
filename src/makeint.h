@@ -695,7 +695,7 @@ long int lseek ();
 # endif
 
 # ifdef  HAVE_GETCWD
-#  if !defined(VMS) && !defined(__DECC) && !defined(_AMIGA)
+#  if !defined(VMS) && !defined(__DECC) && !defined(__AMIGAOS4__)
 char *getcwd (void);
 #  endif
 # else

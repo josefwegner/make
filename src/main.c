@@ -30,9 +30,9 @@ this program.  If not, see <https://www.gnu.org/licenses/>.  */
 #ifdef _AMIGA
 # include <dos/dos.h>
 # include <proto/dos.h>
-#ifdef __AMIGAOS4
+#endif
+#ifdef __AMIGAOS4__
 # include <dos/obsolete.h>
-#endif /*__AMIGAOS4 */
 #endif
 #ifdef WINDOWS32
 # include <windows.h>

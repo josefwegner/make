@@ -1542,7 +1542,11 @@ start_job_command (struct child *child)
   if (amiga_batch_file)
   {
      amiga_batch_file = 0;
+#ifdef __AMIGAOS4__
+     Delete (amiga_bname);
+#else
      DeleteFile (amiga_bname);        /* Ignore errors.  */
+#endif /* AmigaOS4 */
   }
 #endif  /* Amiga */
 #ifdef WINDOWS32
@@ -2688,7 +2692,11 @@ exec_command (char **argv)
 
 void clean_tmp (void)
 {
+#ifdef __AMIGAOS4__
+  Delete (amiga_bname);
+#else
   DeleteFile (amiga_bname);
+#endif
 }
 
 #endif /* On Amiga */
