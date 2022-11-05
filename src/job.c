@@ -1545,7 +1545,7 @@ start_job_command (struct child *child)
   if (amiga_batch_file)
   {
      amiga_batch_file = 0;
-     Delete (amiga_bname);
+     DeleteFile (amiga_bname);        /* Ignore errors.  */
   }
 #endif  /* Amiga */
 #ifdef WINDOWS32
