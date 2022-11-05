@@ -4,7 +4,7 @@ COMPILING FROM SCRATCH
 To compile make for AmigaOS 4.1 please run the following commands:
 
 Projects:make> sh
-/projects/make> CFLAGS="-D_AMIGA -D__USE_INLINE__" ./configure \
+/projects/make> CFLAGS="-D_AMIGA -D__USE_INLINE__ -DUSE_OLD_ANCHORPATH" ./configure \
 	--disable-posix-spawn --disable-load
 /projects/make> make
 
