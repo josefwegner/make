@@ -22,6 +22,9 @@ this program.  If not, see <https://www.gnu.org/licenses/>.  */
 #include <dos/dostags.h>
 #include <proto/exec.h>
 #include <proto/dos.h>
+#ifdef __AMIGAOS4__
+#include <dos/obsolete.h>
+#endif
 
 static const char Amiga_version[] = "$VER: Make "PACKAGE_VERSION" ("__DATE__") \n"
                     "Amiga Port by A. Digulla (digulla@home.lake.de)";
@@ -87,11 +90,7 @@ char *
 wildcard_expansion (char *wc, char *o)
 {
 #   define PATH_SIZE    1024
-#ifdef __AMIGAOS4__
-    struct AnchorPathOld * apath;
-#else
     struct AnchorPath * apath;
-#endif
 
     if ( (apath = AllocMem (sizeof (struct AnchorPath) + PATH_SIZE,
             MEMF_CLEAR))

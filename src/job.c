@@ -94,6 +94,9 @@ int dos_command_running;
 
 #ifdef _AMIGA
 # include <proto/dos.h>
+#ifdef __AMIGAOS4__
+# include <dos/obsolete.h>
+#endif
 static int amiga_pid = 123;
 static int amiga_status;
 static char amiga_bname[32];
@@ -1542,11 +1545,7 @@ start_job_command (struct child *child)
   if (amiga_batch_file)
   {
      amiga_batch_file = 0;
-#ifdef __AMIGAOS4__
      Delete (amiga_bname);
-#else
-     DeleteFile (amiga_bname);        /* Ignore errors.  */
-#endif /* AmigaOS4 */
   }
 #endif  /* Amiga */
 #ifdef WINDOWS32
